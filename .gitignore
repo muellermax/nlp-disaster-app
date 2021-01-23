@@ -1,0 +1,7 @@
+.Archiv
+.ipynb_checkpoints
+disaster
+classifier.pkl
+.idea
+*.pkl
+models/classifier.pkl
