@@ -2,7 +2,7 @@ import json
 import plotly
 import pandas as pd
 import pickle
-# from myapp import app
+from myapp import app
 
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
@@ -12,10 +12,6 @@ from flask import render_template, request
 from plotly.graph_objs import Bar
 from plotly.graph_objs import Scatter
 from sqlalchemy import create_engine
-
-
-app = Flask(__name__)
-
 
 def tokenize(text):
     tokens = word_tokenize(text)
@@ -150,9 +146,9 @@ def go():
     )
 
 
-def main():
-    app.run(host='0.0.0.0', port=3002, debug=True)
+#def main():
+ #   app.run(host='0.0.0.0', port=3002, debug=True)
 
 
-if __name__ == '__main__':
-    main()
+#if __name__ == '__main__':
+ #   main()
