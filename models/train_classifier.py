@@ -11,7 +11,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.metrics import classification_report
-# from sklearn.naive_bayes import MultinomialNB
+from sklearn.naive_bayes import MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier
 
 import pandas as pd
@@ -68,14 +68,16 @@ def build_model():
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
-        ('clf', MultiOutputClassifier(KNeighborsClassifier()))
+        ('clf', MultiOutputClassifier(MultinomialNB()))
     ])
 
     # specify parameters for grid search
-    # MultinomailNB parameters = {'clf__estimator__alpha': [1]}
+    # MultinomailNB 
+    parameters = {'clf__estimator__alpha': [1]}
 
-    parameters = {'clf__estimator__leaf_size': [5, 30],
-                'clf__estimator__n_neighbors': [2, 5]}
+    # KNEIGHBORS
+    #parameters = {'clf__estimator__leaf_size': [5, 30],
+    #            'clf__estimator__n_neighbors': [2, 5]}
 
     # create grid search object
     model = GridSearchCV(pipeline, param_grid=parameters)
