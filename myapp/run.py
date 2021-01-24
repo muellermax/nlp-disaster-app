@@ -39,6 +39,22 @@ from sqlalchemy import create_engine
 #
 #    return clean_tokens
 
+def load_data(database_filepath):
+    """
+    Function to load SQL database.
+    :param database_filepath: Filepath of SQL database
+    :return: DataFrames X and Y for machine learning model.
+    """
+    engine = create_engine('sqlite:///{}'.format(database_filepath))
+
+    df = pd.read_sql_query("SELECT * from database_table", engine)
+    X = df['message']
+    Y = df.drop(['id', 'message', 'original', 'genre'], axis=1)
+    category_names = Y.columns
+
+    return X, Y, category_names
+
+
 def tokenize(text):
     """
     Function to tokenize and lemmatize a given text.
