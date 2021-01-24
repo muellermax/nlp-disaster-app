@@ -7,23 +7,80 @@ from myapp import app
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
+import nltk
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
+
+from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+
+from sklearn.multioutput import MultiOutputClassifier
+from sklearn.metrics import classification_report
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.neighbors import KNeighborsClassifier
+
 from flask import Flask
 from flask import render_template, request
 from plotly.graph_objs import Bar
 from plotly.graph_objs import Scatter
 from sqlalchemy import create_engine
 
+#def tokenize(text):
+#    tokens = word_tokenize(text)
+#    lemmatizer = WordNetLemmatizer()
+#
+#    clean_tokens = []
+#    for tok in tokens:
+#        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+#        clean_tokens.append(clean_tok)
+#
+#    return clean_tokens
+
 def tokenize(text):
+    """
+    Function to tokenize and lemmatize a given text.
+    :param text: String that has to be tokenized and lemmatized.
+    :return: List of tokenized words.
+    """
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
     clean_tokens = []
     for tok in tokens:
-        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-        clean_tokens.append(clean_tok)
+        if tok not in stopwords.words('english'):
+            clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+            clean_tokens.append(clean_tok)
 
     return clean_tokens
 
+def build_model():
+    """
+    A function to build a pipeline with CountVectorizer and TfidfTransfomer and to finally
+    select the best parameters for the classifier. In the present case, I have chosen
+    MultinomialNB classifier due to performance reasons.
+    :return: machine learning model
+    """
+    pipeline = Pipeline([
+        ('vect', CountVectorizer(tokenizer=tokenize)),
+        ('tfidf', TfidfTransformer()),
+        ('clf', MultiOutputClassifier(MultinomialNB()))
+    ])
+
+    # specify parameters for grid search
+    # MultinomailNB 
+    parameters = {'clf__estimator__alpha': [1]}
+
+    # KNEIGHBORS
+    #parameters = {'clf__estimator__leaf_size': [5, 30],
+    #            'clf__estimator__n_neighbors': [2, 5]}
+
+    # create grid search object
+    model = GridSearchCV(pipeline, param_grid=parameters)
+
+    return model
 
 # load data
 engine = create_engine('sqlite:///data/DisasterResponse.db')
