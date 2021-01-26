@@ -72,42 +72,29 @@ def tokenize(text):
 
     return clean_tokens
 
-def build_model():
-    """
-    A function to build a pipeline with CountVectorizer and TfidfTransfomer and to finally
-    select the best parameters for the classifier. In the present case, I have chosen
-    MultinomialNB classifier due to performance reasons.
-    :return: machine learning model
-    """
-    pipeline = Pipeline([
-        ('vect', CountVectorizer(tokenizer=tokenize)),
-        ('tfidf', TfidfTransformer()),
-        ('clf', MultiOutputClassifier(MultinomialNB()))
-    ])
-
-    # specify parameters for grid search
-    # MultinomailNB 
-    parameters = {'clf__estimator__alpha': [1]}
-
-    # KNEIGHBORS
-    #parameters = {'clf__estimator__leaf_size': [5, 30],
-    #            'clf__estimator__n_neighbors': [2, 5]}
-
-    # create grid search object
-    model = GridSearchCV(pipeline, param_grid=parameters)
-
-    return model
-
 # load data
 engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('database_table', engine)
 
 # load model
-with open('./models/classifier.pkl', 'rb') as f:
-    model = pickle.load(f)
+model = pickle.load(open("./models/classifier.pkl", 'rb'))
 
-# model = pickle.load(open("./models/classifier.pkl", 'rb'))
+def tokenize(text):
+    """
+    Function to tokenize and lemmatize a given text.
+    :param text: String that has to be tokenized and lemmatized.
+    :return: List of tokenized words.
+    """
+    tokens = word_tokenize(text)
+    lemmatizer = WordNetLemmatizer()
 
+    clean_tokens = []
+    for tok in tokens:
+        if tok not in stopwords.words('english'):
+            clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+            clean_tokens.append(clean_tok)
+
+    return clean_tokens
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
