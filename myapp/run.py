@@ -28,7 +28,7 @@ from plotly.graph_objs import Bar
 from plotly.graph_objs import Scatter
 from sqlalchemy import create_engine
 
-from utils import tokenize
+from utils.py import tokenize
 
 #def tokenize(text):
 #    tokens = word_tokenize(text)
