@@ -66,7 +66,7 @@ def build_model():
     :return: machine learning model
     """
     pipeline = Pipeline([
-        ('vect', CountVectorizer(tokenizer=tokenize)),
+        ('vect', CountVectorizer(tokenizer=tokenize_it)),
         ('tfidf', TfidfTransformer()),
         ('clf', MultiOutputClassifier(MultinomialNB()))
     ])

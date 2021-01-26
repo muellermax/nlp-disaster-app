@@ -55,7 +55,7 @@ def load_data(database_filepath):
     return X, Y, category_names
 
 
-def tokenize_it(text):
+def tokenize(text):
     """
     Function to tokenize and lemmatize a given text.
     :param text: String that has to be tokenized and lemmatized.
