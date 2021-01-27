@@ -6,6 +6,7 @@ nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('stopwords')
 
+import pickle
 
 def tokenize(text):
     """
