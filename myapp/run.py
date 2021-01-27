@@ -1,4 +1,6 @@
 import json
+import sys
+import os
 import plotly
 import pandas as pd
 import pickle
@@ -45,6 +47,8 @@ from sqlalchemy import create_engine
 
 # https://github.com/madkehl/DisasterResponse/tree/main/web_app
 
+# https://github.com/dagrewal/nlp-disaster-app/blob/master/app/views.py 
+
 def load_data(database_filepath):
     """
     Function to load SQL database.
@@ -83,7 +87,10 @@ engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('database_table', engine)
 
 # load model
-model = pickle.load(open("./models/classifier.pkl", 'rb'))
+model_path = os.path.abspath(os.getcwd()) + "/models/classifier.pkl"
+sys.path.append(os.path.abspath(os.getcwd()) + '/models/')
+
+model = pickle.load(open("model_path", 'rb'))
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
