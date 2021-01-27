@@ -41,7 +41,7 @@ from sqlalchemy import create_engine
 #
 #    return clean_tokens
 
-# https://www.stefaanlippens.net/python-pickling-and-dealing-with-attributeerror-module-object-has-no-attribute-thing.html
+# https://stackoverflow.com/questions/49621169/joblib-load-main-attributeerror
 
 def load_data(database_filepath):
     """
