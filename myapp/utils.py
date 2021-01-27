@@ -23,3 +23,7 @@ def tokenize(text):
             clean_tokens.append(clean_tok)
 
     return clean_tokens
+
+
+# load model
+model = pickle.load(open("./models/classifier.pkl", 'rb'))
