@@ -23,6 +23,8 @@ nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('stopwords')
 
+from utils import tokenize
+
 
 def load_data(database_filepath):
     """
@@ -40,22 +42,22 @@ def load_data(database_filepath):
     return X, Y, category_names
 
 
-def tokenize(text):
-    """
-    Function to tokenize and lemmatize a given text.
-    :param text: String that has to be tokenized and lemmatized.
-    :return: List of tokenized words.
-    """
-    tokens = word_tokenize(text)
-    lemmatizer = WordNetLemmatizer()
+#def tokenize(text):
+ #   """
+  #  Function to tokenize and lemmatize a given text.
+   # :param text: String that has to be tokenized and lemmatized.
+    #:return: List of tokenized words.
+    #"""
+    #tokens = word_tokenize(text)
+    #lemmatizer = WordNetLemmatizer()
 
-    clean_tokens = []
-    for tok in tokens:
-        if tok not in stopwords.words('english'):
-            clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-            clean_tokens.append(clean_tok)
+#    clean_tokens = []
+ #   for tok in tokens:
+  #      if tok not in stopwords.words('english'):
+   #         clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+    #        clean_tokens.append(clean_tok)
 
-    return clean_tokens
+    #return clean_tokens
 
 
 def build_model():
@@ -66,7 +68,7 @@ def build_model():
     :return: machine learning model
     """
     pipeline = Pipeline([
-        ('vect', CountVectorizer(tokenizer=tokenize_it)),
+        ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
         ('clf', MultiOutputClassifier(MultinomialNB()))
     ])

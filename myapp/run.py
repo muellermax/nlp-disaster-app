@@ -28,7 +28,7 @@ from plotly.graph_objs import Bar
 from plotly.graph_objs import Scatter
 from sqlalchemy import create_engine
 
-# from myapp.utils import model
+from myapp.utils import tokenize
 
 #def tokenize(text):
 #    tokens = word_tokenize(text)
@@ -57,22 +57,22 @@ def load_data(database_filepath):
     return X, Y, category_names
 
 
-def tokenize(text):
-    """
-    Function to tokenize and lemmatize a given text.
-    :param text: String that has to be tokenized and lemmatized.
-    :return: List of tokenized words.
-    """
-    tokens = word_tokenize(text)
-    lemmatizer = WordNetLemmatizer()
+#def tokenize(text):
+ #   """
+  #  Function to tokenize and lemmatize a given text.
+   # :param text: String that has to be tokenized and lemmatized.
+#    :return: List of tokenized words.
+ #   """
+  #  tokens = word_tokenize(text)
+   # lemmatizer = WordNetLemmatizer()
 
-    clean_tokens = []
-    for tok in tokens:
-        if tok not in stopwords.words('english'):
-            clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-            clean_tokens.append(clean_tok)
+    #clean_tokens = []
+    #for tok in tokens:
+     #   if tok not in stopwords.words('english'):
+      #      clean_tok = lemmatizer.lemmatize(tok).lower().strip()
+       #     clean_tokens.append(clean_tok)
 
-    return clean_tokens
+    #return clean_tokens
 
 # load data
 engine = create_engine('sqlite:///data/DisasterResponse.db')
