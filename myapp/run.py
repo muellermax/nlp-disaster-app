@@ -43,6 +43,8 @@ from sqlalchemy import create_engine
 
 # https://stackoverflow.com/questions/49621169/joblib-load-main-attributeerror
 
+# https://github.com/madkehl/DisasterResponse/tree/main/web_app
+
 def load_data(database_filepath):
     """
     Function to load SQL database.

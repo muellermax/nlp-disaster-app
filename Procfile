@@ -1,1 +1,1 @@
-web gunicorn myapp.run:app
+web: cd ./app/ && python run.py
