@@ -111,8 +111,10 @@ def save_model(model, model_filepath):
     :param model_filepath: Filepath of model
     :return: None.
     """
-    filename = model_filepath
-    pickle.dump(model, open(filename, 'wb'))
+    if __name__ == "__main__":
+        model.__module__ = "model"
+        filename = model_filepath
+        pickle.dump(model, open(filename, 'wb'))
 
 
 def main():

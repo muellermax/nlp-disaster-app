@@ -87,10 +87,7 @@ engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('database_table', engine)
 
 # load model
-model_path = os.path.abspath(os.getcwd()) + "/models/classifier.pkl"
-sys.path.append(os.path.abspath(os.getcwd()) + '/models/')
-
-model = pickle.load(open(model_path, 'rb'))
+model = pickle.load(open("./models/classifier.pkl", 'rb'))
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
