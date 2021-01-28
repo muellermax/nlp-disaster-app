@@ -25,8 +25,7 @@ nltk.download('stopwords')
 
 from nltk.corpus import stopwords
 
-
-import sys
+# Necessary to be able to import utils.tokenize from another folder
 sys.path.append("..")
 from functions.utils import tokenize
 
@@ -47,24 +46,6 @@ def load_data(database_filepath):
     return X, Y, category_names
 
 
-#def tokenize(text):
- #   """
-  #  Function to tokenize and lemmatize a given text.
-   # :param text: String that has to be tokenized and lemmatized.
-#    :return: List of tokenized words.
- #   """
-  #  tokens = word_tokenize(text)
-   # lemmatizer = WordNetLemmatizer()
-
-#    clean_tokens = []
- #   for tok in tokens:
-  #      if tok not in stopwords.words('english'):
-   #         clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-    #        clean_tokens.append(clean_tok)
-
-#    return clean_tokens
-
-
 def build_model():
     """
     A function to build a pipeline with CountVectorizer and TfidfTransfomer and to finally
@@ -79,10 +60,10 @@ def build_model():
     ])
 
     # specify parameters for grid search
-    # MultinomailNB 
+    # MultinomailNB: KNeighbors would perform better, but pkl-file becomes to big. 
     parameters = {'clf__estimator__alpha': [1]}
 
-    # KNEIGHBORS
+    # KNeighbors
     #parameters = {'clf__estimator__leaf_size': [5, 30],
     #            'clf__estimator__n_neighbors': [2, 5]}
 
@@ -90,9 +71,6 @@ def build_model():
     model = GridSearchCV(pipeline, param_grid=parameters)
 
     return model
-
-# Alles in einen Ordner packen!!!! 
-
 
 def evaluate_model(model, X_test, Y_test, category_names):
     """

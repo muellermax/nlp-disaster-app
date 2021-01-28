@@ -1,46 +1,35 @@
-# Disaster Response Pipeline Project
+# Disaster Response Pipeline Project: webapp
 
-A Natural Language Processing (NLP) project to classify the context of messages that were sent during disasters. 
+## Index
 
-### Installation
-For installation clone this repository and to read two CSV-files navigate to the data folder and run process_data.py:
-````python
-cd data
-python process_data.py disaster_messages.csv disaster_categories.csv DisasterResponse.db
-````
-Where disaster_messages and disaster_categories and the features and labels for the machine learning model. DisasterResponse
-is the DataBase where the table will be stored. 
-
-After preparing the data, navigate to models and run train_classifier.py: 
-
-````python
-cd models
-python train_classifier.py ../data/DisasterResponse.db classifier.pkl
-````
-Where ../data/DisasterResponse.db ist the path of your database and classifier.pkl the name for the pickle-file. 
+1. [About the project](#about)
+2. [Data](#data)
+3. [File descriptions](#file-description)
+4. [How to interact](#interact)
+5. [Acknowledgements](#thx)
+6. [Author](#author)
+7. [License](#license)
 
 
-To run the app navigate to myapp and python run.py. 
-```python
-cd myapp
-python run.py
-```
+## <a class="anchor" id = "about">About the project</a>
+A Natural Language Processing (NLP) project to classify the context of messages that were sent during disasters. This project was part of my Udacity Data Scientist Nanodegree. 
 
-You should see the app on http://127.0.0.1:3002. 
+This repo is about the webapp, which can be found here: http://nlp-disaster.herokuapp.com
 
-Please note that I have not uploaded the last version of my classifier, as the pickle-file grew quite big. 
-
-Packages in use: json plotly pandas pickle nltk flask sqlalchemy sys scikit-learn
+Furthermore, there is [another repository](https://github.com/muellermax/Disaster-Response), which can be cloned and deployed on another server. 
 
 
-### Project motivation
-NLP is an exciting field and I am planing to implement it in my other projects (especially those about movies). 
-This project is part of my Udacity Data Science course. 
+## <a class="anchor" id = "data">Data</a>
+The data was proviced by [Figure Eight](https://appen.com/). You can have a look at it [here](https://github.com/muellermax/nlp-disaster-app/tree/main/data). 
+
+It consists mainly of text messages and the categorization of the corresponding catastrophe (e.g. strom, fire, earthquake, etc.). This data can be used to train a text classifier. 
 
 
-### File descriptions
+## <a class="anchor" id="file-description">File description</a>
 * app: Folder that contains the necessary files for deployment:
     * run.py: Python script that starts the app and loads the ML-model as well as the plotly visualizations. 
+    * train_classifier.py: Script to train the classifer (not essential for the webapp)
+    * classifier.pkl: The pickle file of the classifier. 
     * templates => master.html: The "index"-page of this dashboard. 
     * templates => go.html: Shows the classification of the given text message. 
 * data: Folder that includes the data (stored in CSV and a database) and the python file that prepares the data. 
@@ -50,11 +39,7 @@ This project is part of my Udacity Data Science course.
 * models: Folder that includes train_classifier.py to train a classifier as well as the ready pkl-file. 
 
 
-### Data
-The data was proviced by [Figure Eight](https://appen.com/). 
-
-
-### How to interact
+## <a class="anchor" id="interact">How to interact</a>
 Every contribution is welcome. I think there are many possibilities to improve the performance of the ML-model. 
 I am currently working with KNeighbors, which performs slightly better that MultinomialNB and without extended GridSearch. As you can see on the information about the
 training set, some categories (like aid_related or weather_related) do appear more often than other categories (like 
@@ -62,20 +47,17 @@ hospitals or fire). The precision of the classifier could be improved by taking 
 or other data engineering. 
 
 
-### Acknowledgments
-Thanks to Figure Eight for providing the data for us students. Also thanks to the Udacity team for all the 
-instructions. 
+## <a class="anchor" id="thx">Acknowledgements</a>
+Thanks to Figure Eight for providing the data for us students. Also thanks to the Udacity team for all the instructions. 
+
+Deployment to Heroku was a bit tricky, I had several AttributeErrors and "module not found" errors. So just like so many times, Stackoverflow finally helped me [here](https://stackoverflow.com/questions/9383014/cant-import-my-own-modules-in-python). 
 
 
-### Author
-Maximilian Müller, Business Development Manager in the Renewable Energy sector. Now diving into the field of data analysis. 
+## <a class="anchor" id="author">Author</a>
+Maximilian Müller, Senior Business Development Manager in the Renewable Energy sector. Now diving into the field of Data Science. 
 
 
-### GitHub repository
-Link to GitHub respository: https://github.com/muellermax/Disaster-Response
-
-
-### License
+## <a class="anchor" id="license">License</a>
 Copyright 2020 Maximilian Müller
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
@@ -92,4 +74,3 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER I
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 From opensource.org
-

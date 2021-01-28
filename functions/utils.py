@@ -1,3 +1,6 @@
+# This module was necessary as after deployment to Heroku the tokenize function could not be found. 
+# So train_classifier and run both access this file. 
+
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 

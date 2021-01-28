@@ -32,26 +32,9 @@ from plotly.graph_objs import Bar
 from plotly.graph_objs import Scatter
 from sqlalchemy import create_engine
 
-import sys
+# Necessary to be able to import utils.tokenize from another folder
 sys.path.append("..")
 from functions.utils import tokenize
-
-#def tokenize(text):
-#    tokens = word_tokenize(text)
-#    lemmatizer = WordNetLemmatizer()
-#
-#    clean_tokens = []
-#    for tok in tokens:
-#        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-#        clean_tokens.append(clean_tok)
-#
-#    return clean_tokens
-
-# https://stackoverflow.com/questions/49621169/joblib-load-main-attributeerror
-
-# https://github.com/madkehl/DisasterResponse/tree/main/web_app
-
-# https://github.com/dagrewal/nlp-disaster-app/blob/master/app/views.py 
 
 def load_data(database_filepath):
     """
@@ -67,24 +50,6 @@ def load_data(database_filepath):
     category_names = Y.columns
 
     return X, Y, category_names
-
-
-#def tokenize(text):
- #   """
-  #  Function to tokenize and lemmatize a given text.
-   # :param text: String that has to be tokenized and lemmatized.
-#    :return: List of tokenized words.
- #   """
-  #  tokens = word_tokenize(text)
-   # lemmatizer = WordNetLemmatizer()
-
-    #clean_tokens = []
-    #for tok in tokens:
-      #  if tok not in stopwords.words('english'):
-     #       clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-       #     clean_tokens.append(clean_tok)
-
-    #return clean_tokens
 
 # load data
 engine = create_engine('sqlite:///data/DisasterResponse.db')
@@ -208,8 +173,6 @@ def go():
 
 def main():
     app.run(debug=True)
-    #app.run(host='0.0.0.0', port=3002, debug=True)
-
 
 if __name__ == '__main__':
     main()
