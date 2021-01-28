@@ -32,7 +32,8 @@ from plotly.graph_objs import Bar
 from plotly.graph_objs import Scatter
 from sqlalchemy import create_engine
 
-from models.utils import tokenize
+from utils import tokenize
+
 
 #def tokenize(text):
 #    tokens = word_tokenize(text)
@@ -89,7 +90,7 @@ engine = create_engine('sqlite:///data/DisasterResponse.db')
 df = pd.read_sql_table('database_table', engine)
 
 # load model
-model = pickle.load(open("./models/classifier.pkl", 'rb'))
+model = pickle.load(open("classifier.pkl", 'rb'))
 
 # index webpage displays cool visuals and receives user input text for model
 @app.route('/')
