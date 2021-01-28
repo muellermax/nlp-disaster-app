@@ -23,7 +23,9 @@ nltk.download('punkt')
 nltk.download('wordnet')
 nltk.download('stopwords')
 
-from functions.utils import tokenize
+from nltk.corpus import stopwords
+
+from utils import tokenize
 
 
 def load_data(database_filepath):
