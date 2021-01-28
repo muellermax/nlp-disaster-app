@@ -32,7 +32,7 @@ from plotly.graph_objs import Bar
 from plotly.graph_objs import Scatter
 from sqlalchemy import create_engine
 
-from myapp.utils import tokenize
+from utils import tokenize
 
 
 #def tokenize(text):
