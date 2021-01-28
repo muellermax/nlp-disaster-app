@@ -25,7 +25,10 @@ nltk.download('stopwords')
 
 from nltk.corpus import stopwords
 
-from utils import tokenize
+
+import sys
+sys.path.append("..")
+from functions.utils import tokenize
 
 
 def load_data(database_filepath):
