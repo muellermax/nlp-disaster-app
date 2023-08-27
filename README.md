@@ -14,7 +14,7 @@
 ## <a class="anchor" id = "about">About the project</a>
 A Natural Language Processing (NLP) project to classify the context of messages that were sent during disasters. This project was part of my Udacity Data Scientist Nanodegree. 
 
-This repo is about the webapp, which can be found here: http://nlp-disaster.herokuapp.com
+This repo is about the webapp, which was online on Heroku until end of 2022. Currently I have no other deployment online and development here is paused. 
 
 Furthermore, there is [another repository](https://github.com/muellermax/Disaster-Response), which can be cloned and deployed on another server. 
 
